@@ -13,13 +13,23 @@ const paragraph = [
     "A closure gives you access to an outer function's scope from an inner function.",
     "Arrow functions are a shorter way to write functions in JavaScript.",
     "Template literals allow you to embed variables inside strings easily.",
-    "JavaScript can fetch data from APIs using fetch or XMLHttpRequest."
+    "JavaScript can fetch data from APIs using fetch or XMLHttpRequest.",
+    
+    // NEW PARAGRAPHS
+    "JavaScript runs in the browser, but it can also run on servers using Node.js.",
+    "You can use console.log to print messages or debug your JavaScript code.",
+    "JavaScript is case-sensitive, so 'MyVar' and 'myvar' are treated differently.",
+    "The typeof operator helps you check the type of a variable in JavaScript.",
+    "Conditionals like if, else if, and else help make decisions in code.",
+    "Switch statements are a cleaner way to handle multiple conditions.",
+    "JavaScript can prevent default browser actions using event.preventDefault().",
+    "The 'this' keyword refers to the object that is executing the current function.",
+    "Local storage allows you to store data in the browser that stays even after refresh.",
+    "JavaScript can dynamically create or remove HTML elements from a page."
 ];
 
 const item = document.getElementById("items");
-
 const dataContainer = document.getElementById("data");
-
 
 function shuffle(array){
     let current =  array.length;
@@ -35,18 +45,17 @@ function shuffle(array){
     return array;
 }
 
-
 function generate(){
     if(item.value==0){
         alert("Your value cannot be 0");
     }
-    else if(item.value> paragraph.length){
+    else if(item.value > paragraph.length){
         const randomIndex = Math.floor(Math.random()*paragraph.length);
-        dataContainer.innerHTML = `${paragraph[randomIndex]}`;
+        dataContainer.innerHTML = `<p>${paragraph[randomIndex]}</p>`;
     }
     else{
-        const shuffleParagraphs = paragraph;
-        shuffle(paragraph);
+        const shuffleParagraphs = [...paragraph]; // use copy to prevent mutation
+        shuffle(shuffleParagraphs);
 
         const selectedParagraph= shuffleParagraphs.slice(0,item.value);
         const paraHtml = selectedParagraph.map(paragraph=>`<p>${paragraph}</p>`).join("");
@@ -54,3 +63,4 @@ function generate(){
         dataContainer.innerHTML = paraHtml;
     }
 }
+ 
